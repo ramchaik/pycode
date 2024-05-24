@@ -3,6 +3,12 @@ import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--task", default="return a list of numbers")
+parser.add_argument("--language", default="python")
+args = parser.parse_args()
 
 if "GOOGLE_API_KEY" not in os.environ:
     os.environ["GOOGLE_API_KEY"] = getpass.getpass("Provide your Google API Key")
@@ -22,8 +28,8 @@ code_chain = LLMChain(
 )
 
 result = code_chain({
-    "language": "python",
-    "task": "return a list of numbers"
+    "language": args.language,
+    "task": args.task
 })
 
 print(result['text'])
