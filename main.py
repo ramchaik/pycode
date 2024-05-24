@@ -3,7 +3,10 @@ import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+from dotenv import load_dotenv
 import argparse
+
+load_dotenv()
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--task", default="return a list of numbers")
